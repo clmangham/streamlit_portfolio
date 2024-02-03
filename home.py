@@ -70,16 +70,18 @@ def home():
     # About me section
     st.subheader("About Me")
     st.write("""
-    - I am a data scientist with a background in biology. I enjoy transforming data into knowledge and bringing structure to ambiguous problems.
+    - I am an applied data scientist and machine learning practitioner with a background in biology. I enjoy transforming data into knowledge and bringing structure to ambiguous problems.
 
-    - Prev: Neurobiology researcher @ Duke University. I worked on computational approaches to unravel the transformation of visual inputs into neuronal signals in the visual cortex, with a focus on understanding their role in guiding behaviors.
+    - As a neurobiology researcher @ Duke University, I worked on computational approaches to understand how neuronal signals in the visual cortex guide behaviors.
 
-    - I am passionate about **Machine Learning/Deep Learning, MLOps, Data Engineering, Bioinformatics (of course!), Optimization, Automation**, and more!
-    
-    - I'm also an avid gamer 🎮 and enjoy kickboxing 🥊
-    
+    - As a biology consultant @ Cornell University, I worked with diverse groups of researcers, students, and staff while managing a wide range of projects.
+
+    - I am passionate about **Data Science & Machine Learning/Deep Learning, MLOps, Data Engineering, Bioinformatics, Automation**, and more!
+
+    - I'm also an avid gamer 🎮 and enjoy hiking 🥾 and kickboxing 🥊
+
     - 📫 How to reach me: camaron.mangham@gmail.com
-    
+
     - 🏠 Atlanta, Georgia
     """)
 
