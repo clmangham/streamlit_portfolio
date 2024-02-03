@@ -57,7 +57,7 @@ def home():
         "GitHub": ["https://github.com/clmangham", "https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg"],
     }
 
-    social_icons_html = [f"<a href='{social_icons[platform][0]}' target='_blank' style='margin-right: 10px;'><img class='social-icon' src='{social_icons[platform][1]}'' alt='{platform}''></a>" for platform in social_icons]
+    social_icons_html = [f"<a href='{social_icons[platform][0]}' target='_blank' style='margin-right: 20px;'><img class='social-icon' src='{social_icons[platform][1]}'' alt='{platform}''></a>" for platform in social_icons]
 
     st.write(f"""
     <div style="display: flex; justify-content: center; margin-bottom: 20px;">
@@ -70,19 +70,21 @@ def home():
     # About me section
     st.subheader("About Me")
     st.write("""
-    - I am an applied data scientist and machine learning practitioner with a background in biology. I enjoy transforming data into knowledge and bringing structure to ambiguous problems.
+    I am an applied data scientist and machine learning practitioner with a background in biology. I enjoy transforming data into knowledge and bringing structure to ambiguous problems.
 
-    - As a neurobiology researcher @ Duke University, I worked on computational approaches to understand how neuronal signals in the visual cortex guide behaviors.
+    As a neurobiology researcher @ Duke University, I worked on computational approaches to understand how neuronal signals in the visual cortex guide behaviors.
 
-    - As a biology consultant @ Cornell University, I worked with diverse groups of researcers, students, and staff while managing a wide range of projects.
+    As a biology consultant @ Cornell University, I worked with diverse groups of researcers, students, and staff while managing a wide range of projects.
 
-    - I am passionate about **Data Science & Machine Learning/Deep Learning, MLOps, Data Engineering, Bioinformatics, Automation**, and more!
+    I am passionate about **Data Science & Machine Learning/Deep Learning, MLOps, Data Engineering, Bioinformatics, Automation**, and more!
 
-    - I'm also an avid gamer 🎮 and enjoy hiking 🥾 and kickboxing 🥊
+    I'm also an avid gamer 🎮 and enjoy hiking 🥾 and kickboxing 🥊
 
-    - 📫 How to reach me: camaron.mangham@gmail.com
+    Let's connect!
 
-    - 🏠 Atlanta, Georgia
+    📫 How to reach me: camaron.mangham@gmail.com
+
+    🏠 Atlanta, Georgia
     """)
 
     st.write("##")
@@ -96,7 +98,7 @@ def home():
     )
 
     st.write("##")
-    
+
     st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects in the navigation menu! (More coming soon...)</div>""", unsafe_allow_html=True)
 
 if __name__ == "__main__":
