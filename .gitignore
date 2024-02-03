@@ -1,2 +1,4 @@
 .vscode
 __pycache__
+projects/cover_letter_generator/.env
+projects/cover_letter_generator/.streamlit/secrets.toml
