@@ -1,27 +1,18 @@
 
 import streamlit as st
 from projects.cover_letter_generator.generator import CoverLetterGenerator
+
 def main():
 
     # --- Streamlit page configuration ---
 
-    # st.set_page_config(
-    #     page_title="Cover Letter Generator", 
-    #     # page_icon="🕹️", 
-    #     layout="wide",
-    #     initial_sidebar_state="expanded",
-    #     menu_items={
-    #         "About": """This is a test app by Camaron Mangham"""
-    #     }
-    #     )
-    
-    # --- Title ---
-
     # Set the title for the Streamlit app
     st.title("Cover Letter Generator")
+    st.caption("A streamlit cover letter generator powered by OpenAI LLM")
+
     st.write('''
              1. Attach a resume as a PDF.
-             
+
              2. Add a url for a job description.
 
              3. A cover letter will be generated for the role!''')
@@ -41,8 +32,17 @@ def main():
             st.write('Please add a url to a job description!')
 
 
+    with st.sidebar:
+        openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+        "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+
+    if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
+
+
     if uploaded_file and user_input:
-        file_ingestor = CoverLetterGenerator(uploaded_file, user_input)
+        file_ingestor = CoverLetterGenerator(uploaded_file, user_input, openai_api_key)
         st.write(file_ingestor.cover_letter_generator())
 
 

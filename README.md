@@ -1,1 +1,1 @@
-Streamlit portfolio built with guide from [Enric Domingo](https://medium.com/@enricdomingo/create-your-data-ai-web-app-portfolio-with-streamlit-python-step-by-step-guide-f82fcd7dea95)
+Streamlit portfolio built with guide from [Enric Domingo](https://medium.com/@enricdomingo/create-your-data-ai-web-app-portfolio-with-streamlit-python-step-by-step-guide-f82fcd7dea95) and [Gaurav Jakhar](https://medium.com/@gaurav.jaik86/building-an-ai-powered-chat-with-pdf-app-with-streamlit-langchain-faiss-and-llama2-affadea65737)

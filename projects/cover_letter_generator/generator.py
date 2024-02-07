@@ -16,9 +16,11 @@ import streamlit as st
 import tempfile
 
 class CoverLetterGenerator:
-    def __init__(self, resume_file, job_descrption_url):
+    def __init__(self, resume_file, job_descrption_url, openai_api_key):
         self.resume_file = resume_file
         self.job_descrption_url = job_descrption_url
+        self.openai_api_key = openai_api_key
+
 
     def cover_letter_generator(self):
 
@@ -26,10 +28,10 @@ class CoverLetterGenerator:
 
 
         # Set up chat GPT model
-        _ = load_dotenv(find_dotenv())  # read local .env file with API Key
+        # _ = load_dotenv(find_dotenv())  # read local .env file with API Key
         llm_model = "gpt-3.5-turbo"  # Choose model
 
-        llm = ChatOpenAI(temperature=0.5, model=llm_model)
+        llm = ChatOpenAI(temperature=0.5, model=llm_model, openai_api_key = self.openai_api_key)
         # embeddings = OpenAIEmbeddings()
 
         with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
@@ -65,7 +67,7 @@ class CoverLetterGenerator:
         document_chain = create_stuff_documents_chain(llm, prompt)
 
 
-    ### Create Download_description if == True 
+    ### Create Download_description if == True
 
         loader = WebBaseLoader(self.job_descrption_url)
         data = loader.load()
@@ -79,7 +81,7 @@ class CoverLetterGenerator:
 
         bm25_retriever.k = 2  # not sure what this does, num args? len list?
 
-        embedding = OpenAIEmbeddings()
+        embedding = OpenAIEmbeddings(openai_api_key = self.openai_api_key)
         faiss_vectorstore = FAISS.from_texts(
             job_description_list,
             embedding,
