@@ -74,7 +74,8 @@ def home():
 
     As a neurobiology researcher @ Duke University, I worked on computational approaches to understand how neuronal signals in the visual cortex guide behaviors.
 
-    As a biology consultant @ Cornell University, I worked with diverse groups of researcers, students, and staff while managing a wide range of projects.
+    As a health and safety biologist @ Cornell University, I developed and administered biosafety protocols while collaborating with researchers, engineers,
+    and medical professionals.
 
     I am passionate about **Data Science & Machine Learning/Deep Learning, MLOps, Data Engineering, Bioinformatics, Automation**, and more!
 
@@ -99,7 +100,7 @@ def home():
 
     st.write("##")
 
-    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects in the navigation menu! (More coming soon...)</div>""", unsafe_allow_html=True)
+    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects in the navigation menu! (More coming soon...for now checkout my GitHub profile!)</div>""", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     home()

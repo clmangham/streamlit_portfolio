@@ -8,7 +8,7 @@ def main():
 
     # Set the title for the Streamlit app
     st.title("Cover Letter Generator")
-    st.caption("A streamlit cover letter generator powered by OpenAI LLM")
+    st.caption("A cover letter generator powered by OpenAI")
 
     st.write('''
              1. Attach a resume as a PDF.
