@@ -24,36 +24,13 @@ class CoverLetterGenerator:
 
     def cover_letter_generator(self):
 
-        prompt_input = "Write a cover letter for the provided resume and job description."
-
-
         # Set up chat GPT model
         # _ = load_dotenv(find_dotenv())  # read local .env file with API Key
         llm_model = "gpt-3.5-turbo"  # Choose model
 
         llm = ChatOpenAI(temperature=0.5, model=llm_model, openai_api_key = self.openai_api_key)
-        # embeddings = OpenAIEmbeddings()
 
-        with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-            tmp_file.write(self.resume_file.getvalue())
-            tmp_file_path = tmp_file.name
-
-
-        # Load pdf
-        loader = PDFPlumberLoader(
-            tmp_file_path
-        )
-        pages = loader.load()
-
-        # Create vector store
-        text_splitter = RecursiveCharacterTextSplitter()
-        documents = text_splitter.split_documents(pages)
-        resume_list = [documents[0].page_content]
-
-
-        # vector = FAISS.from_documents(documents, embeddings)
-
-        # Create document chain
+        # Create prompt defining context
         prompt = ChatPromptTemplate.from_template(
             """Answer the following question based only on the provided context:
 
@@ -64,38 +41,65 @@ class CoverLetterGenerator:
         Question: {input}"""
         )
 
+       # Create document chain with llm and contextual promp
         document_chain = create_stuff_documents_chain(llm, prompt)
 
+        # -- RESUME (PDF) --
+        # Generate temporary file
+        with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+            tmp_file.write(self.resume_file.getvalue())
+            tmp_file_path = tmp_file.name
 
-    ### Create Download_description if == True
+        # Load resume.pdf from temporary filepath
+        loader = PDFPlumberLoader(
+            tmp_file_path
+        )
+        pages = loader.load()
 
-        loader = WebBaseLoader(self.job_descrption_url)
-        data = loader.load()
+        # Split text and generate list of documents
+        text_splitter = RecursiveCharacterTextSplitter()
+        documents = text_splitter.split_documents(pages)
+        resume_list = [documents[0].page_content]
 
-        job_description_list = [data[0].page_content]
-
-        # Set up ensemble retrieval
+        # Set up keyword (BM25) retrieval for RESUME
         bm25_retriever = BM25Retriever.from_texts(
             resume_list, metadatas=[{"resume": 1}] * len(resume_list)
         )
 
-        bm25_retriever.k = 2  # not sure what this does, num args? len list?
+        bm25_retriever.k = 2  # Return top k relevant results (for example 2 pages/chunks)
 
+        # -- JOB DESCRIPTION (URL) --
+        # Load job description from url
+        loader = WebBaseLoader(self.job_descrption_url)
+        data = loader.load()
+
+        # I don't apply a text splitter here because of HTML. There is an html parser but it is limited by requiring website specific constraints
+        job_description_list = [data[0].page_content]
+
+        # Use FAISS (similarity search) and openAI embedding for semantic search of job description
         embedding = OpenAIEmbeddings(openai_api_key = self.openai_api_key)
         faiss_vectorstore = FAISS.from_texts(
             job_description_list,
             embedding,
             metadatas=[{"job_description": 2}] * len(job_description_list),
         )
+
         faiss_retriever = faiss_vectorstore.as_retriever(search_kwargs={"k": 2})
 
-        # initialize the ensemble retriever with equal weight
+        # -- ENSEMBLE RETRIEVER --
+        # initialize the ensemble retriever with equal weight for both retreivers
         ensemble_retriever = EnsembleRetriever(
             retrievers=[bm25_retriever, faiss_retriever], weights=[0.5, 0.5]
         )
 
+        # Create retrieval chain wit ensemble retriever and document_chain defining context
         retrieval_chain_ensemble = create_retrieval_chain(ensemble_retriever, document_chain)
 
+        # Prover prompt for cover letter prompt to retrieval chain
+        prompt_input = "Write a cover letter for the provided resume and job description."
+
+
+        # Invoke chain for response
         response = retrieval_chain_ensemble.invoke(
             {"input": prompt_input}
         )

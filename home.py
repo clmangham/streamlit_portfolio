@@ -24,32 +24,16 @@ def home():
     # Top title
     st.write(f"""<div class="title"><strong>Camaron Mangham</strong></div>""", unsafe_allow_html=True)
 
-    # Profile image
-    # st.write(f"""
-    # <div class="container">
-    #     <div class="box">
-    #         <div class="spin-container">
-    #             <div class="shape">
-    #                 <div class="bd">
-    #                     <img src="{img}" alt="Enric Domingo">
-    #                 </div>
-    #             </div>
-    #         </div>
-    #     </div>
-    # </div>
-    # """, 
-    # unsafe_allow_html=True)
-
     # Alternative image (static and rounded) uncomment it if you prefer this one
     st.write(f"""
     <div style="display: flex; justify-content: center;">
        <img src="{img}" alt="Camaron Mangham" width="300" height="300" style="border-radius: 50%; object-fit: cover; margin-top: 40px; margin-bottom: 40px;">
     </div>
     """, unsafe_allow_html=True)
-    
+
     # Subtitle
     st.write(f"""<div class="subtitle" style="text-align: center;">Data Scientist & Machine Learning Engineer</div>""", unsafe_allow_html=True)
-    
+
     # Social Icons
     social_icons = {
         # Platform: [URL, Icon]
@@ -62,7 +46,7 @@ def home():
     st.write(f"""
     <div style="display: flex; justify-content: center; margin-bottom: 20px;">
         {''.join(social_icons_html)}
-    </div>""", 
+    </div>""",
     unsafe_allow_html=True)
 
     st.write("##")
