@@ -32,7 +32,7 @@ def home():
     """, unsafe_allow_html=True)
 
     # Subtitle
-    st.write(f"""<div class="subtitle" style="text-align: center;">Data Scientist & Machine Learning Engineer</div>""", unsafe_allow_html=True)
+    st.write(f"""<div class="subtitle" style="text-align: center;">AI & Data Systems Architect</div>""", unsafe_allow_html=True)
 
     # Social Icons
     social_icons = {
@@ -54,37 +54,24 @@ def home():
     # About me section
     st.subheader("About Me")
     st.write("""
-    I am an applied data scientist and machine learning practitioner with a background in biology. I enjoy transforming data into knowledge and bringing structure to ambiguous problems.
+    I’m an AI & Data Systems Architect and all-around tech enthusiast. I’m always exploring new ideas, whether it’s building AI-driven systems, expanding my home lab, or diving deeper into data, security, and automation.
 
-    As a neurobiology researcher @ Duke University, I worked on computational approaches to understand how neuronal signals in the visual cortex guide behaviors.
-
-    As a health and safety biologist @ Cornell University, I developed and administered biosafety protocols while collaborating with researchers, engineers,
-    and medical professionals.
-
-    I am passionate about **Data Science & Machine Learning/Deep Learning, MLOps, Data Engineering, Bioinformatics, Automation**, and more!
-
-    I'm also an avid gamer 🎮 and enjoy hiking 🥾 and kickboxing 🥊
-
-    Let's connect!
-
-    📫 How to reach me: camaron.mangham@gmail.com
-
-    🏠 Atlanta, Georgia
+    Currently, I’m obsessed with AI, cybersecurity, and engineering robust data systems. I love working on interesting projects and talking about tech in general. Let’s connect!
     """)
 
     st.write("##")
 
     # Download CV button
-    st.download_button(
-        label="📄 Download my Resume",
-        data=pdf_bytes,
-        file_name="CamaronMangham_Resume.pdf",
-        mime="application/pdf",
-    )
+    # st.download_button(
+    #     label="📄 Download my Resume",
+    #     data=pdf_bytes,
+    #     file_name="CamaronMangham_Resume.pdf",
+    #     mime="application/pdf",
+    # )
 
-    st.write("##")
+    # st.write("##")
 
-    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects in the navigation menu! (More coming soon...for now checkout my GitHub profile!)</div>""", unsafe_allow_html=True)
+    # st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects in the navigation menu! (More coming soon...for now checkout my GitHub profile!)</div>""", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     home()
